@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Form đăng ký</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <h1 class="p-5 bg-primary text-white text-center">ĐĂNG KÝ THAM GIA CÂU LẠC BỘ HỌC THIẾT KẾ WEB</h1>  
+  <div class="container-fluid d-flex justify-content-center p-5 ">  
+    <form id="formDangKy" action="../html/DanhSachThanhVien.html" method="post" class="bg-white shadow-lg p-4 rounded w-50">
+      <div class="mb-3">
+        <label for="txtHoTen">Họ và tên:</label>
+        <input type="text" class="form-control mb-1" id="txtHoTen"  name="txtHoTen" required>
+      </div>
+      <div class="mb-3">
+        <label for="txtMaSoSinhVien">Mã số sinh viên :</label>
+        <input type="text" class="form-control mb-1" id="txtMaSoSinhVien"  name="txtMaSoSinhVien" required>
+      </div>
+      <div class="mb-3">
+        <label for="txtNgaySinh">Ngày tháng năm sinh:</label>
+        <input type="date" class="form-control mb-1" id="txtNgaySinh" name="txtNgaySinh" required>
+        </div>
+      <div class="mb-3">
+        <label for="txtMaLop">Mã lớp:</label>
+        <input type="text" class="form-control mb-1" id="txtMaLop"  name="txtMaLop" required>
+      </div>
+      <div class="d-flex justify-content-between mt-3 p-4">
+        <a href="/Trangchu.html" class="btn btn-outline-info">Hủy</a>
+        <button type="submit" class="btn btn-outline-success">Đăng ký</button>
+      </div>
+  </form>
+</div>
+<footer class="mt-auto p-4 bg-dark text-white text-center">
+    <p>Huỳnh Lê Ngọc Trinh<br>
+      <a href="mailto:hege@example.com">sun478617@gmail.com</a><br>
+      110123058
+    </p>
+</footer>
+<script>
+  // Lưu thông tin thành viên vào localStorage khi form được submit
+    document.getElementById('formDangKy').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var thanhVien = {
+            hoTen: document.getElementById('txtHoTen').value,
+            mssv: document.getElementById('txtMaSoSinhVien').value,
+            maLop: document.getElementById('txtMaLop').value,
+            ngaySinh: document.getElementById('txtNgaySinh').value,
+        };
+        var danhSach = JSON.parse(localStorage.getItem('danhSachThanhVien') || '[]');
+        danhSach.push(thanhVien);
+        localStorage.setItem('danhSachThanhVien', JSON.stringify(danhSach));
+        window.location.href = '../html/DanhSachThanhVien.html';
+    });
+</script>
+</body>
+</html>
